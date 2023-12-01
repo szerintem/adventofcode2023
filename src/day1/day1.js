@@ -10,7 +10,7 @@ const sum = function (input, options = {}) {
         const numerics = row.match(/\d/ig)
         if(!numerics) return
         const digits = numerics.map(numeric => Number(numeric))
-        sum += Number(`${digits[0]}${digits[digits.length-1]}`);
+        sum += Number([digits[0], digits[digits.length-1]].join(''));
     })
     return sum
 }
