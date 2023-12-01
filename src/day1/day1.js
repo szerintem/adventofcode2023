@@ -8,9 +8,7 @@ const sum = function (input, options = {}) {
     let sum = 0
     rows.forEach(row => {
         const numerics = row.match(/\d/ig)
-        if(!numerics) return
-        const digits = numerics.map(numeric => Number(numeric))
-        sum += Number([digits[0], digits[digits.length-1]].join(''));
+        sum += Number([numerics[0], numerics[numerics.length-1]].join(''));
     })
     return sum
 }
