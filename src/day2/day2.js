@@ -1,40 +1,11 @@
-const calculate = function(input, rules) {
+const calculate = function(input, rules = null) {
   const games = separate(input);
 
   let sum = 0;
 
   Object.entries(games).forEach(([gameId, rounds]) => {
     gameId = Number(gameId)
-    const sumColors = {
-      red: 0,
-      green: 0,
-      blue: 0,
-    }
-    rounds.forEach(round => {
-      if(round.red && round.red > sumColors.red) sumColors.red = round.red
-      if(round.green && round.green > sumColors.green) sumColors.green = round.green
-      if(round.blue && round.blue > sumColors.blue) sumColors.blue = round.blue
-    })
 
-    const isValidForRule =
-      rules.red >= sumColors.red &&
-      rules.green >= sumColors.green &&
-      rules.blue >= sumColors.blue
-
-    if(isValidForRule) {
-      sum = sum + gameId;
-    }
-  });
-
-  return sum;
-};
-
-const calculate2 = function(input, rules) {
-  const games = separate(input);
-
-  let sum = 0;
-
-  Object.entries(games).forEach(([gameId, rounds]) => {
     const sumColors = {
       red: 0,
       green: 0,
@@ -46,8 +17,19 @@ const calculate2 = function(input, rules) {
       if(sumColors.blue < round.blue) sumColors.blue = round.blue
     })
 
-    const asd = Number(sumColors.red * sumColors.green * sumColors.blue)
-    sum = sum + asd
+    if(rules) {
+      const isValidForRule =
+        rules.red >= sumColors.red &&
+        rules.green >= sumColors.green &&
+        rules.blue >= sumColors.blue
+
+      if(isValidForRule) {
+        sum = sum + gameId;
+      }
+    } else {
+      const multiplied = Number(sumColors.red * sumColors.green * sumColors.blue)
+      sum = sum + multiplied
+    }
   });
 
   return sum;
@@ -79,6 +61,5 @@ const separate = function(input) {
 };
 
 module.exports = {
-  calculate,
-  calculate2,
+  calculate
 };

@@ -17,7 +17,7 @@ zoneight234
 
 describe('day1', () => {
     describe('part1', () => {
-        it('example result should result 142', () => {
+        it('example result should be 142', () => {
             expect(day1.sum(example1)).to.eql(142);
         });
         it('input result should be 53334', () => {
@@ -25,7 +25,7 @@ describe('day1', () => {
         });
     });
     describe('part2', () => {
-        it('example result should result 281', () => {
+        it('example result should be 281', () => {
             expect(day1.sum(example2, { useNumericText: true })).to.eql(281);
         });
         it('input result should be 52834', () => {
